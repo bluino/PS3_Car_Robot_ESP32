@@ -169,7 +169,7 @@ void setup(){
   Ps3.attach(notify);
   Ps3.attachOnConnect(onConnect);
   Ps3.attachOnDisconnect(onDisConnect);
-  Ps3.begin("78:21:84:7e:45:3a");
+  Ps3.begin("78:21:84:7e:45:3a");       // The MAC address of ESP32 stored in the PS3 Controller.
   Serial.println("Ready.");
 }
 
