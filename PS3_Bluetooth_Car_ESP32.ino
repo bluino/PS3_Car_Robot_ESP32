@@ -20,8 +20,6 @@ const int rightMotorPWMSpeedChannel = 4;
 const int leftMotorPWMSpeedChannel = 5;
 
 
-
-
 void rotateMotor(int rightMotorSpeed, int leftMotorSpeed){
   if (rightMotorSpeed < 0){
     digitalWrite(rightMotorPin1,LOW);
@@ -43,10 +41,6 @@ void rotateMotor(int rightMotorSpeed, int leftMotorSpeed){
     digitalWrite(leftMotorPin1,LOW);
   } 
 
-  // Serial.print("R: ");
-  // Serial.println(rightMotorSpeed);
-  // Serial.print("L: ");
-  // Serial.println(leftMotorSpeed);  
   ledcWrite(rightMotorPWMSpeedChannel, abs(rightMotorSpeed));
   ledcWrite(leftMotorPWMSpeedChannel, abs(leftMotorSpeed));   
 }
@@ -59,27 +53,8 @@ void notify(){
 
   int throttle = map( yAxisValue, 127, -128, -255, 255);
   int steering = map( xAxisValue, -128, 127, -255, 255);  
-  // int motorDirection = 1;
-  
-  // if (throttle < 0){     //Move car backward
-  //   motorDirection = -1;    
-  // }
-
-  // int rightMotorSpeed, leftMotorSpeed;
-  // rightMotorSpeed =  abs(throttle) - steering;
-  // leftMotorSpeed =  abs(throttle) + steering;
-  // rightMotorSpeed = constrain(rightMotorSpeed, 0, 255);
-  // leftMotorSpeed = constrain(leftMotorSpeed, 0, 255);
-
-  // rotateMotor(rightMotorSpeed * motorDirection, leftMotorSpeed * motorDirection);
-
-
-  // rotateMotor(rightMotorSpeed, leftMotorSpeed);
-
-
 
   
-
   if(throttle>50){
     if(steering>50){
       digitalWrite(rightMotorPin1,HIGH);
@@ -136,87 +111,6 @@ void notify(){
         ledcWrite(rightMotorPWMSpeedChannel, MIN_SPEED);
         ledcWrite(leftMotorPWMSpeedChannel, MIN_SPEED); 
   }
-
-
-
-  // if(Ps3.event.button_down.up){
-  //     if(Ps3.event.button_down.right){
-  //       digitalWrite(rightMotorPin1,HIGH);
-  //       digitalWrite(leftMotorPin1,HIGH);
-  //       ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED-(MAX_SPEED*0.85));
-  //       ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED); 
-  //     } else if(Ps3.event.button_down.left){
-  //       digitalWrite(rightMotorPin1,HIGH);
-  //       digitalWrite(leftMotorPin1,HIGH);
-  //       ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED);
-  //       ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED-(MAX_SPEED*0.85)); 
-  //     } else {
-  //       Serial.print("F: ");
-  //       Serial.println(throttle);
-  //       digitalWrite(rightMotorPin1,HIGH);
-  //       digitalWrite(leftMotorPin1,HIGH);
-  //       ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED);
-  //       ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED); 
-  //     }
-  //   } else if (Ps3.event.button_up.up){
-  //     if ((throttle>-50 && throttle<50) || (steering>-50 && steering<50)){
-  //       ledcWrite(rightMotorPWMSpeedChannel, MIN_SPEED);
-  //       ledcWrite(leftMotorPWMSpeedChannel, MIN_SPEED); 
-  //     }
-  //   }
-
-  //   if(Ps3.event.button_down.down){
-  //     if(Ps3.event.button_down.right){
-  //       digitalWrite(rightMotorPin1,LOW);
-  //       digitalWrite(leftMotorPin1,LOW);
-  //       ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED);
-  //       ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED-(MAX_SPEED*0.85)); 
-  //     } else if(Ps3.event.button_down.left){
-  //       digitalWrite(rightMotorPin1,LOW);
-  //       digitalWrite(leftMotorPin1,LOW);
-  //       ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED-(MAX_SPEED*0.85));
-  //       ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED); 
-  //     } else {
-  //       Serial.print("B: ");
-  //       Serial.println(throttle);
-  //       digitalWrite(rightMotorPin1,LOW);
-  //       digitalWrite(leftMotorPin1,LOW);
-  //       ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED);
-  //       ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED); 
-  //     }
-  //   } else if (Ps3.event.button_up.down){
-  //     if ((throttle>-50 && throttle<50) || (steering>-50 && steering<50)){
-  //       ledcWrite(rightMotorPWMSpeedChannel, MIN_SPEED);
-  //       ledcWrite(leftMotorPWMSpeedChannel, MIN_SPEED); 
-  //     }
-  //   }
-    
-  //   if (Ps3.event.button_down.right){
-  //     Serial.print("R: ");
-  //     Serial.println(steering);
-  //     digitalWrite(rightMotorPin1,HIGH);
-  //     digitalWrite(leftMotorPin1,LOW);
-  //     ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED);
-  //     ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED); 
-  //   } else if (Ps3.event.button_up.right) {
-  //     ledcWrite(rightMotorPWMSpeedChannel, MIN_SPEED);
-  //     ledcWrite(leftMotorPWMSpeedChannel, MIN_SPEED); 
-  //   }
-    
-  //   if (Ps3.event.button_down.left){
-  //     Serial.print("L: ");
-  //     Serial.println(steering);
-  //     digitalWrite(rightMotorPin1,LOW);
-  //     digitalWrite(leftMotorPin1,HIGH);
-  //     ledcWrite(rightMotorPWMSpeedChannel, MAX_SPEED);
-  //     ledcWrite(leftMotorPWMSpeedChannel, MAX_SPEED); 
-  //   } else if (Ps3.event.button_up.left) {
-  //     ledcWrite(rightMotorPWMSpeedChannel, MIN_SPEED);
-  //     ledcWrite(leftMotorPWMSpeedChannel, MIN_SPEED); 
-  //   }
-
-
-
 
 
   if(Ps3.event.button_down.cross){
